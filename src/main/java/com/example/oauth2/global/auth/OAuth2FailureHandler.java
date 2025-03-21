@@ -12,14 +12,12 @@ import java.io.IOException;
 
 @Slf4j
 @Component
-public class Oauth2FailureHandler implements AuthenticationFailureHandler {
+public class OAuth2FailureHandler implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.info("=== OAuth2 로그인 실패 ===");
+        log.info("request url: {}", request.getRequestURL());
         log.info("에러 메시지: {}", exception.getMessage());
-
-        // ✅ 자동 로그인 방지를 위해 실패 시 특정 URL로 이동
-        response.sendRedirect("/error");
     }
 }

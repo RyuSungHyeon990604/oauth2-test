@@ -17,7 +17,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class OauthSuccessHandler implements AuthenticationSuccessHandler {
+public class OAuthSuccessHandler implements AuthenticationSuccessHandler {
 
     private final CookieUtil cookieUtil;
 
@@ -25,6 +25,7 @@ public class OauthSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         AuthUser principal =(AuthUser) authentication.getPrincipal();
         log.info("=== 로그인 성공 ===");
+        log.info("request url: {}", request.getRequestURL());
         log.info("obj to String: {}", principal.toString());
 
         String accessToken = JwtProvider.generateToken(principal.getName(), 99999);

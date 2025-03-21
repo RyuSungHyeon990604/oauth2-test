@@ -1,5 +1,6 @@
 package com.example.oauth2.global.auth;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -8,9 +9,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 @RequiredArgsConstructor
 public class AuthUser implements OAuth2User {
-    private final String oauth2Id;
+    private final Long id;
 
     @Override
     public Map<String, Object> getAttributes() {
@@ -24,6 +26,6 @@ public class AuthUser implements OAuth2User {
 
     @Override
     public String getName() {
-        return oauth2Id;
+        return String.valueOf(id);
     }
 }

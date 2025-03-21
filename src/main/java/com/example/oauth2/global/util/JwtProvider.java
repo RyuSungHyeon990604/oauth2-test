@@ -15,12 +15,12 @@ public class JwtProvider {
 
     public static String secretKey="secret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_keysecret_key";
 
-    public static String generateToken(String oauth2Id, int validTime) {
+    public static String generateToken(String sub, int validTime) {
         try {
             SecretKey key = Keys.hmacShaKeyFor(JwtProvider.secretKey.getBytes(StandardCharsets.UTF_8));
             return Jwts.builder()
                     .setHeader(Map.of("typ", "JWT"))
-                    .setSubject(oauth2Id)
+                    .setSubject(sub)
                     .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
                     .setExpiration(
                             Date.from(ZonedDateTime.now().plusMinutes(validTime).toInstant()))

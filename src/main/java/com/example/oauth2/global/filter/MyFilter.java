@@ -31,7 +31,7 @@ public class MyFilter extends OncePerRequestFilter {
     }
 
     private void handleAccessToken(String token) {
-        String sub = JwtProvider.validateToken(token);
+        Long sub = Long.valueOf(JwtProvider.validateToken(token));
         AuthUser authUser = new AuthUser(sub);
         JwtAuthenticationToken tokenAuth = new JwtAuthenticationToken(authUser);
         SecurityContextHolder.getContext().setAuthentication(tokenAuth);

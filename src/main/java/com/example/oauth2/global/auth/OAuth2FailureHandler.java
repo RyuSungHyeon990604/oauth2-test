@@ -19,5 +19,7 @@ public class OAuth2FailureHandler implements AuthenticationFailureHandler {
         log.info("=== OAuth2 로그인 실패 ===");
         log.info("request url: {}", request.getRequestURL());
         log.info("에러 메시지: {}", exception.getMessage());
+
+        response.sendRedirect("/error");
     }
 }

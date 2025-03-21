@@ -28,7 +28,7 @@ public class OAuthSuccessHandler implements AuthenticationSuccessHandler {
         log.info("request url: {}", request.getRequestURL());
         log.info("obj to String: {}", principal.toString());
 
-        String accessToken = JwtProvider.generateToken(principal.getName(), 99999);
+        String accessToken = JwtProvider.generateToken(String.valueOf(principal.getId()), 99999);
         Cookie access = cookieUtil.create("access", accessToken, 99999);
         response.addCookie(access);
 
